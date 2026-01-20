@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# WordPress
+public_html/blog/
+
+# Server config (個別設定のため除外)
+xserver_php/
+.htaccess
+.user.ini
+
+# Logs
+log/
+*.log
+
+# Mail storage
+mail/
+
+# Backup files
+*.bak
+*~
+
+# Test files (本番では削除すべき)
+test_mail.php
