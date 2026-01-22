@@ -1,6 +1,7 @@
 <?php
 /**
  * Seimu Cloud - 先行リリース登録フォーム処理
+ * Supabaseへのデータ保存 + メール送信
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -11,6 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Method not allowed']);
     exit;
 }
+
+// Supabase設定
+$supabase_url = 'https://gjnygfzznlxnojnhqvio.supabase.co';
+$supabase_key = 'sb_publishable_nYABHzZt_bPut7WSgt8bXQ_bM8Kzfqb';
 
 // 入力値の取得とサニタイズ
 $council_name = isset($_POST['council_name']) ? trim($_POST['council_name']) : '';
@@ -32,6 +37,37 @@ if (empty($email)) {
 if (!empty($errors)) {
     echo json_encode(['success' => false, 'errors' => $errors]);
     exit;
+}
+
+// ========================================
+// Supabaseにデータを保存
+// ========================================
+$supabase_data = json_encode([
+    'email' => $email,
+    'council_name' => $council_name
+]);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $supabase_url . '/rest/v1/waitlist');
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $supabase_data);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'apikey: ' . $supabase_key,
+    'Authorization: Bearer ' . $supabase_key,
+    'Prefer: return=minimal'
+]);
+
+$supabase_response = curl_exec($ch);
+$supabase_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+// Supabaseへの保存結果をログに記録
+if ($supabase_http_code >= 200 && $supabase_http_code < 300) {
+    error_log("Seimu Cloud - Supabase save success: email={$email}");
+} else {
+    error_log("Seimu Cloud - Supabase save failed: HTTP {$supabase_http_code}, Response: {$supabase_response}");
 }
 
 // メール設定
