@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seimu Cloud（政務クラウド） | 地方議員のための活動支援クラウド</title>
+    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <meta name="description" content="「領収書の山」と「コンプライアンスの不安」から、あなたを解放します。経理・陳情・広報をワンストップで支える、地方議員のための「デジタル秘書」Seimu Cloud（政務クラウド）。AIが3つの財布を自動仕訳し、事務ミスをゼロにします。">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans JP', 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            color: #1d1d1f;
+            font-size: 17px;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+        }
+        
+        .sf-pro {
+            font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans JP', sans-serif;
+        }
+        
+        .hero-section {
+            background-image: url('Whisk_7e80b3af11.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .section-divider {
+            padding: 100px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .section-divider {
+                padding: 140px 0;
+            }
+        }
+        
+        .product-section {
+            background-color: #ffffff;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .footer {
+            background-color: #f5f5f7;
+            padding: 40px 0;
+            color: #6e6e73;
+        }
+        
+        .nav-link {
+            color: #1d1d1f;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover {
+            opacity: 1;
+        }
+        
+        .apple-button {
+            background-color: #4FACFE;
+            border-radius: 980px;
+            color: white;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: 400;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .apple-button:hover:not(:disabled) {
+            background-color: #3d9ae8;
+            transform: translateY(-1px);
+        }
+        
+        .apple-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .button-outline {
+            border: 2px solid #1A376D;
+            border-radius: 980px;
+            color: #1A376D;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: 400;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            background-color: transparent;
+        }
+        
+        .button-outline:hover {
+            background-color: #1A376D;
+            color: white;
+        }
+        
+        .product-card {
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .product-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .gradient-text {
+            color: #1A376D;
+            font-weight: 700;
+        }
+        
+        .testimonial {
+            background-color: #f5f5f7;
+            border-radius: 18px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #4FACFE;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-header {
+            background-color: #1A376D;
+        }
+        
+        .nav-link {
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .nav-link:hover {
+            opacity: 1;
+            color: #4FACFE;
+        }
+        
+        .trust-section {
+            background-color: #1A376D;
+            color: white;
+        }
+        
+        .bg-gray-50 {
+            background-color: #f5f5f7;
+        }
+        
+        .pain-points-section {
+            background-color: #fbfbfd;
+        }
+        
+        .apple-card {
+            background-color: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .apple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .apple-heading {
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+        
+        .apple-text {
+            color: #6e6e73;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4FACFE;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+        
+        /* Spinner Animation */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+        
+        .toast {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 16px 20px;
+            min-width: 300px;
+            max-width: 400px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            opacity: 0;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .toast.hide {
+            opacity: 0;
+            transform: translateX(400px);
+        }
+        
+        .toast-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .toast-success .toast-icon {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .toast-error .toast-icon {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .toast-content {
+            flex: 1;
+        }
+        
+        .toast-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: #1d1d1f;
+            margin-bottom: 4px;
+        }
+        
+        .toast-description {
+            font-size: 13px;
+            color: #6e6e73;
+            line-height: 1.4;
+        }
+        
+        .toast-close {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border: none;
+            background: transparent;
+            color: #6e6e73;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        
+        .toast-close:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 500px;
+            }
+            .section-divider {
+                padding: 60px 0;
+            }
+            .product-section {
+                padding: 60px 0;
+            }
+            body {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <nav class="fixed top-0 w-full nav-header bg-opacity-95 backdrop-filter backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold sf-pro gradient-text" style="color: white;">Seimu Cloud</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="nav-link sf-pro text-base">機能</a>
+                    <a href="#pricing" class="nav-link sf-pro text-base">料金</a>
+                    <a href="#security" class="nav-link sf-pro text-base">セキュリティ</a>
+                    <a href="#contact" class="nav-link sf-pro text-base">お問い合わせ</a>
+                    <a href="#login" class="button-outline sf-pro text-base" style="border-color: white; color: white;">ログイン</a>
+                    <a href="#pricing" class="apple-button sf-pro text-base">無料で試す</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="outline-none mobile-menu-button">
+                        <i class="fas fa-bars text-white text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#features" class="block text-center py-3 px-4 text-base hover:bg-gray-100 transition duration-300 text-gray-800">機能</a>
+            <a href="#pricing" class="block text-center py-3 px-4 text-base hover:bg-gray-100 transition duration-300 text-gray-800">料金</a>
+            <a href="#security" class="block text-center py-3 px-4 text-base hover:bg-gray-100 transition duration-300 text-gray-800">セキュリティ</a>
+            <a href="#contact" class="block text-center py-3 px-4 text-base hover:bg-gray-100 transition duration-300 text-gray-800">お問い合わせ</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container mx-auto px-6 relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Seimu Cloud</h1>
+            <p class="text-xl md:text-2xl mb-8 leading-relaxed">地方議員のための活動支援クラウド</p>
+            <div class="mb-6">
+                <span class="inline-block bg-white bg-opacity-90 text-gray-800 px-6 py-2 rounded-full text-lg font-semibold">🚀 近日公開</span>
+            </div>
+            <a href="#pricing" class="apple-button" style="font-size: 18px; padding: 14px 32px;">先行登録はこちら</a>
+        </div>
+    </section>
+
+    <section class="pain-points-section section-divider">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-5xl md:text-6xl apple-heading text-center mb-20" style="color: #1d1d1f;">こんなお悩みありませんか？</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="apple-card p-12">
+                    <div class="text-6xl mb-8 text-center">📄</div>
+                    <h3 class="text-2xl md:text-3xl apple-heading mb-8 text-center" style="color: #1d1d1f;">領収書の整理が大変</h3>
+                    <ul class="apple-text space-y-4 text-base md:text-lg">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>「政務活動費」と「政治資金」の仕訳が複雑で混乱する</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>事務所家賃やガソリン代の按分計算が面倒</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>不正受給と言われないか常に不安</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="apple-card p-12">
+                    <div class="text-6xl mb-8 text-center">📋</div>
+                    <h3 class="text-2xl md:text-3xl apple-heading mb-8 text-center" style="color: #1d1d1f;">陳情対応の漏れが心配</h3>
+                    <ul class="apple-text space-y-4 text-base md:text-lg">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>街頭で頼まれた要望をうっかり忘れてしまう</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>対応状況を把握しきれない</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>依頼者への報告タイミングがわからない</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="apple-card p-12">
+                    <div class="text-6xl mb-8 text-center">✍️</div>
+                    <h3 class="text-2xl md:text-3xl apple-heading mb-8 text-center" style="color: #1d1d1f;">SNS更新の時間がない</h3>
+                    <ul class="apple-text space-y-4 text-base md:text-lg">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>文章を考える時間がない</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>各SNS用に書き分けるのが大変</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-3 text-gray-400">•</span>
+                            <span>議会質問の原稿作成に時間がかかる</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section-divider bg-white">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <h2 class="text-5xl md:text-6xl apple-heading text-center mb-20" style="color: #1d1d1f;">主な機能</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-12 scroll-reveal apple-card">
+                    <div class="feature-icon text-center mb-8" style="font-size: 3.5rem; color: #4FACFE;">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl apple-heading mb-8 text-center" style="color: #1d1d1f;">経理・コンプライアンス</h3>
+                    <ul class="apple-text space-y-5 text-base md:text-lg">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">3つの財布を自動仕訳</strong><br class="hidden md:block">領収書をスマホで撮るだけで、政務活動費・選挙費用・政治資金を自動振り分け</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">按分計算も自動化</strong><br class="hidden md:block">事務所家賃やガソリン代など、公費と私費の混在経費も自動計算</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">AIリスク検知</strong><br class="hidden md:block">自治体の手引きを学習し、申請前にリスクを警告</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">整合性チェック</strong><br class="hidden md:block">活動記録との矛盾を自動検知</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-12 scroll-reveal apple-card">
+                    <div class="feature-icon text-center mb-8" style="font-size: 3.5rem; color: #4FACFE;">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl apple-heading mb-8 text-center" style="color: #1d1d1f;">陳情・タスク管理</h3>
+                    <ul class="apple-text space-y-5 text-base md:text-lg">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">音声入力で即座に記録</strong><br class="hidden md:block">「〇〇公園の草刈り依頼」と話すだけでタスク化</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">地図上にピン表示</strong><br class="hidden md:block">場所を視覚的に把握でき、移動中でも忘れない</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">進捗管理</strong><br class="hidden md:block">受付・対応中・完了・報告済をステータス管理</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">報告リマインダー</strong><br class="hidden md:block">依頼者への報告タイミングを自動通知</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-12 scroll-reveal apple-card">
+                    <div class="feature-icon text-center mb-8" style="font-size: 3.5rem; color: #4FACFE;">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl apple-heading mb-8 text-center" style="color: #1d1d1f;">広報・議会活動</h3>
+                    <ul class="apple-text space-y-5 text-base md:text-lg">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">SNS投稿の自動生成</strong><br class="hidden md:block">箇条書きメモからInstagram・X・ブログ用に書き分け</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">活動報告の自動作成</strong><br class="hidden md:block">日々の記録から報告書を自動生成</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">議事録の文字起こし</strong><br class="hidden md:block">議会での発言を自動で記録・要約</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1 flex-shrink-0" style="color: #4FACFE; font-size: 1.1rem;"></i>
+                            <span><strong style="color: #1d1d1f; font-weight: 600;">質問原稿のサポート</strong><br class="hidden md:block">過去の議事録やニュースから論点を整理し、質問原稿のたたき台を提案</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="security" class="trust-section section-divider">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-5xl md:text-6xl apple-heading text-center mb-16 text-white">セキュリティ</h2>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="text-center scroll-reveal">
+                    <div class="text-5xl mb-8">🔒</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-4 text-white apple-heading">国内サーバー</h3>
+                    <p class="text-gray-300 text-base">
+                        厳重なデータ管理
+                    </p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="text-5xl mb-8">🔑</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-4 text-white apple-heading">暗号化通信</h3>
+                    <p class="text-gray-300 text-base">
+                        SSL/TLSによる保護
+                    </p>
+                </div>
+                
+                <div class="text-center scroll-reveal">
+                    <div class="text-5xl mb-8">🛡️</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-4 text-white apple-heading">2段階認証</h3>
+                    <p class="text-gray-300 text-base">
+                        不正アクセス防止
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="pricing" class="section-divider bg-gray-50">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-5xl md:text-6xl apple-heading text-center mb-6" style="color: #1d1d1f;">先行登録</h2>
+            <p class="text-lg md:text-xl apple-text text-center mb-16">
+                サービス開始時にお知らせします。<br>早期登録の方には特別な特典をご用意しています。
+            </p>
+            
+            <div class="text-center">
+                <div class="bg-white rounded-2xl apple-card p-12">
+                    <h3 class="text-2xl md:text-3xl apple-heading mb-4" style="color: #1d1d1f;">🚀 Waitlist に登録</h3>
+                    <p class="text-lg apple-text mb-8">リリースをいち早くお知らせします</p>
+                    
+                    <form id="waitlist-form" class="max-w-md mx-auto text-left">
+                        <div class="mb-6">
+                            <label for="council_name" class="block text-sm font-medium mb-2" style="color: #1d1d1f;">
+                                地方議会名 <span class="text-red-500">*</span>
+                                <span class="apple-text font-normal text-xs ml-1">（先生所属の議会名）</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="council_name" 
+                                name="council_name" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl text-base transition-all"
+                                placeholder="例：〇〇県議会　〇〇市議会"
+                                style="background-color: #f5f5f7;">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium mb-2" style="color: #1d1d1f;">
+                                メールアドレス <span class="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl text-base transition-all"
+                                placeholder="example@email.com"
+                                style="background-color: #f5f5f7;">
+                        </div>
+                        
+                        <div class="text-center">
+                            <button 
+                                type="submit" 
+                                id="submit-btn" 
+                                class="apple-button w-full md:w-auto" 
+                                style="font-size: 17px; padding: 14px 40px;">
+                                <span id="btn-text">先行登録する</span>
+                                <span id="btn-loading" class="hidden flex items-center justify-center gap-2">
+                                    <span class="spinner"></span>
+                                    送信中...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-divider bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl md:text-4xl apple-heading text-center mb-12" style="color: #1d1d1f;">お問い合わせ</h2>
+            
+            <div class="text-center">
+                <p class="text-lg md:text-xl apple-text mb-4">DS Partners Investment Inc.</p>
+                <p class="text-lg md:text-xl apple-text">info@dspartners.jp</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center py-12">
+                <h3 class="text-xl font-semibold mb-3 apple-heading" style="color: #1d1d1f;">Seimu Cloud</h3>
+                <p class="text-base apple-text mb-6">
+                    議員のための活動支援クラウド
+                </p>
+                <p class="text-sm apple-text" style="color: #86868b;">&copy; 2026 Seimu Cloud All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top-btn" class="hidden fixed bottom-4 right-4 md:bottom-8 md:right-8 w-10 h-10 md:w-14 md:h-14 text-white rounded-full shadow-lg z-50 flex justify-center items-center transition-all duration-300" style="background-color: #4FACFE;">
+        <i class="fas fa-arrow-up text-lg md:text-xl"></i>
+    </button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <script>
+        // Toast通知システム
+        const Toast = {
+            container: null,
+            
+            init() {
+                this.container = document.getElementById('toast-container');
+            },
+            
+            show(type, title, description, duration = 5000) {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                
+                const icon = type === 'success' ? '✓' : '✕';
+                
+                toast.innerHTML = `
+                    <div class="toast-icon">${icon}</div>
+                    <div class="toast-content">
+                        <div class="toast-title">${title}</div>
+                        <div class="toast-description">${description}</div>
+                    </div>
+                    <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+                `;
+                
+                this.container.appendChild(toast);
+                
+                // アニメーション開始
+                setTimeout(() => toast.classList.add('show'), 10);
+                
+                // 自動削除
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.classList.add('hide');
+                    setTimeout(() => toast.remove(), 300);
+                }, duration);
+            },
+            
+            success(title, description, duration) {
+                this.show('success', title, description, duration);
+            },
+            
+            error(title, description, duration) {
+                this.show('error', title, description, duration);
+            }
+        };
+        
+        // Toast初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            Toast.init();
+        });
+
+        // スクロール時のアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.scroll-reveal');
+            
+            const elementInView = (el, scrollOffset = 0) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= 
+                    (window.innerHeight || document.documentElement.clientHeight) * 0.8
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('reveal');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('reveal');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 100)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+            
+            // 初期表示のアニメーション
+            handleScrollAnimation();
+        });
+
+        // トップへ戻るボタンのスクリプト
+        const topBtn = document.getElementById('back-to-top-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                topBtn.classList.remove('hidden');
+            } else {
+                topBtn.classList.add('hidden');
+            }
+        });
+
+        topBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ハンバーガーメニューのスクリプト
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.querySelector('.mobile-menu-button');
+            const menu = document.querySelector('#mobile-menu');
+            const icon = btn.querySelector('i');
+
+            if (btn && menu && icon) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+
+                const mobileLinks = menu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.add('hidden');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    });
+                });
+            }
+        });
+
+        // Waitlistフォームの送信処理（改善版）
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('waitlist-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    // ボタンを無効化してローディング表示
+                    submitBtn.disabled = true;
+                    btnText.classList.add('hidden');
+                    btnLoading.classList.remove('hidden');
+                    btnLoading.style.display = 'flex';
+
+                    const formData = new FormData(form);
+                    const councilName = formData.get('council_name');
+                    const email = formData.get('email');
+
+                    try {
+                        const response = await fetch('early_access.php', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            // 成功のToast通知
+                            Toast.success(
+                                '登録ありがとうございます！',
+                                'リリースをお待ちください。確認メールをお送りしました。',
+                                5000
+                            );
+                            
+                            // フォームをリセット
+                            form.reset();
+                        } else {
+                            // エラーのToast通知
+                            Toast.error(
+                                '送信に失敗しました',
+                                result.message || 'しばらくしてから再度お試しください。',
+                                5000
+                            );
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        // エラーのToast通知
+                        Toast.error(
+                            '送信に失敗しました',
+                            'ネットワークエラーが発生しました。しばらくしてから再度お試しください。',
+                            5000
+                        );
+                    } finally {
+                        // ボタンを元に戻す
+                        submitBtn.disabled = false;
+                        btnText.classList.remove('hidden');
+                        btnLoading.classList.add('hidden');
+                        btnLoading.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
