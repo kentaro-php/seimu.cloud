@@ -21,6 +21,10 @@ mail/
 # Backup files
 *.bak
 *~
+index_old_app.html
 
 # Test files (本番では削除すべき)
 test_mail.php
+
+# Environment files
+.env.local
